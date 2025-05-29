@@ -1,13 +1,38 @@
 #!/bin/bash
-echo "===================================="
-echo " SYSTEM ADMINISTRATION DASHBOARD "
-echo "===================================="
-echo "1) System Information"
-echo "2) User Management"
-echo "3) Process Management"
-echo "4) Exit"
-echo "5) Network Information"
+# Load module scripts to enable their functions
+source modules/system_info.sh
+source modules/user_management.sh
+source modules/process_management.sh
+source modules/network_info.sh
 
+# Display the menu system
+
+while true; do
+    echo "===================================="
+    echo " SYSTEM ADMINISTRATION DASHBOARD "
+    echo "===================================="
+    echo "1) System Information"
+    echo "2) User Management"
+    echo "3) Process Management"
+    echo "4) Network Information"
+    echo "5) Exit"
+
+    read -p "Choose an option: " choice
+
+    case $choice in
+        1) system_info ;;
+        2) user_management ;;
+        3) process_management ;;
+        4) network_info ;;
+        5) echo "Exiting... Goodbye!" ; exit 0 ;;
+        *) echo "Invalid choice! Please enter a number between 1-5." ;;
+    esac
+done
+        4) network_info ;;
+        5) echo "Exiting... Goodbye!" ; exit 0 ;;
+        *) echo "Invalid choice! Please enter a number between 1-5." ;;
+    esac
+done
 read -p "Choose an option: " choice
 system_info() {
     echo "System Information:"
@@ -70,5 +95,4 @@ network_info() {
     echo "ARP Table:"
     arp -a
 }
-
 
